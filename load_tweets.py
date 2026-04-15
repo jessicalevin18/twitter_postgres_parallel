@@ -273,6 +273,7 @@ def insert_tweet(connection,tweet):
              (id_tweets, id_urls)
              VALUES
              (:id_tweets, :id_urls)
+             ON CONFLICT DO NOTHING
                                     ''')
             res = connection.execute(sql,{
                 'id_tweets': tweet['id'],

@@ -6,9 +6,9 @@ echo '==========================================================================
 echo 'load denormalized'
 echo '================================================================================'
 time for file in $files; do
-    echo
-    psql postgresql://postgres:pass@localhost:10872 -c "TRUNCATE tweets_jsonb;"
-    cat example.jsonl | sed 's/\\u0000//g' | psql postgresql://postgres:pass@localhost:10872  -c "COPY tweets_jsonb (data) FROM STDIN csv quote e'\x01' delimiter e'\x02';"
+    unzip -p "$file" | sed 's/\\u0000//g' | psql postgresql://postgres:pass@localhost:10872/postgres -c "COPY tweets_jsonb (data) FROM STDIN csv quote e'\x01' delimiter e'\x02';"
+    # psql postgresql://postgres:pass@localhost:25523 -c "TRUNCATE tweets_jsonb;"
+    # cat example.jsonl | sed 's/\\u0000//g' | psql postgresql://postgres:pass@localhost:25523  -c "COPY tweets_jsonb (data) FROM STDIN csv quote e'\x01' delimiter e'\x02';"
     # copy your solution to the twitter_postgres assignment here
 done
 

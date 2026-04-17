@@ -13,6 +13,7 @@ echo '==========================================================================
 echo 'load pg_normalized'
 echo '================================================================================'
 # FIXME: implement this with GNU parallel
+time echo "$files" | parallel ./load_tweets.py
 
 echo '================================================================================'
 echo 'load pg_normalized_batch'

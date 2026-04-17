@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/sh           
 
-python3 load_tweets.py --inputs="$file" --db postgresql://postgres:pass@localhost:10871
+unzip -p "$1" | sed 's/\\u0000//g' | psql postgresql://postgres:pass@localhost:10871/ -c "COPY tweets_jsonb (data) FROM STDIN csv quote e'\x01' delimiter e'\x02';"

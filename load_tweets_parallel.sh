@@ -18,4 +18,5 @@ time echo "$files" | parallel -j $(nproc) 'time python3 load_tweets.py --inputs=
 echo '================================================================================'
 echo 'load pg_normalized_batch'
 echo '================================================================================'
-# FIXME: implement this with GNU parallel
+# FIXME: implement this with GNU paralll
+time echo "$files" | parallel -j $(nproc) 'time python3 load_tweets.py --inputs="{}" --db postgresql://postgres:pass@localhost:10870'

@@ -420,9 +420,7 @@ def _insert_tweets(connection,input_tweets):
         ON CONFLICT DO NOTHING
         '''
         )
-    print('calling res =...')
     res = connection.execute(sql, { key+str(i):value for i,tweet in enumerate(tweets) for key,value in tweet.items() })
-    print('past res = ...')
 
 if __name__ == '__main__':
 
